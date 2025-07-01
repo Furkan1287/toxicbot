@@ -18,7 +18,7 @@ CORS(app)
 db = SQLAlchemy(app)
 
 # OpenRouter API konfigürasyonu (DeepSeek modelleri için)
-OPENROUTER_API_KEY = os.getenv('OPENROUTER_API_KEY', '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')
+OPENROUTER_API_KEY = os.getenv('OPENROUTER_API_KEY')
 OPENROUTER_API_URL = "https://openrouter.ai/api/v1/chat/completions"
 
 # Veritabanı modelleri
@@ -133,6 +133,10 @@ def get_scenarios():
 @app.route('/api/chat', methods=['POST'])
 def chat():
     """OpenRouter üzerinden DeepSeek ile sohbet"""
+    # API key kontrolü
+    if not OPENROUTER_API_KEY:
+        return jsonify({'error': 'OpenRouter API key bulunamadı. Lütfen .env dosyasını kontrol edin.'}), 500
+    
     data = request.get_json()
     if not data:
         return jsonify({'error': 'Geçersiz JSON verisi'}), 400
@@ -229,6 +233,10 @@ def chat():
 @app.route('/api/analysis', methods=['POST'])
 def analyze_conversation():
     """Sohbet analizi ve manipülasyon tespiti"""
+    # API key kontrolü
+    if not OPENROUTER_API_KEY:
+        return jsonify({'error': 'OpenRouter API key bulunamadı. Lütfen .env dosyasını kontrol edin.'}), 500
+    
     data = request.get_json()
     if not data:
         return jsonify({'error': 'Geçersiz JSON verisi'}), 400
