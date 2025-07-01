@@ -44,7 +44,30 @@ sağlamayı hedefler.
 - Sürekli suçluluk yaratma
 - **Karanlık Sonuç**: Kullanıcı kendini köle hisseder
 
-## 🚀 Kurulum
+## 🚀 Hızlı Başlangıç
+
+### ⚡ 5 Dakikada Kurulum
+
+```bash
+# 1. Projeyi klonla
+git clone https://github.com/Furkan1287/toxicbot.git
+cd toxicbot
+
+# 2. Bağımlılıkları yükle
+pip install -r requirements.txt
+cd frontend && npm install && cd ..
+
+# 3. Environment dosyası oluştur
+cp env.example .env
+
+# 4. API key al ve .env dosyasına ekle
+# OpenRouter.com'dan ücretsiz API key al
+# .env dosyasına: OPENROUTER_API_KEY=sk-or-v1-your_key_here
+
+# 5. Uygulamayı başlat
+python app.py  # Backend
+# Yeni terminal: cd frontend && npm start  # Frontend
+```
 
 ### Gereksinimler
 - Python 3.8+
@@ -71,17 +94,23 @@ cp env.example .env
 
 4. **OpenRouter API Key alın:**
    - [OpenRouter](https://openrouter.ai/) adresine gidin
-   - Yeni bir API key oluşturun
-   - `.env` dosyasına ekleyin:
-   ```
-   OPENROUTER_API_KEY=your_actual_api_key_here
-   SECRET_KEY=your_secret_key_here
-   ```
+   - Ücretsiz hesap oluşturun
+   - "Get API Key" butonuna tıklayın
+   - API key'inizi kopyalayın
 
-5. **Backend'i çalıştırın:**
+5. **API Key'i .env dosyasına ekleyin:**
+```bash
+# .env dosyasını açın ve şu şekilde düzenleyin:
+OPENROUTER_API_KEY=sk-or-v1-your_actual_api_key_here
+SECRET_KEY=your_secret_key_here
+```
+
+6. **Backend'i çalıştırın:**
 ```bash
 python app.py
 ```
+
+**⚠️ ÖNEMLİ:** API key olmadan uygulama çalışmayacaktır. Lütfen .env dosyasını doğru şekilde yapılandırın.
 
 ### Frontend Kurulumu
 
@@ -189,6 +218,42 @@ Toksik ilişki ile karşılaştıysanız:
 - [ ] Çoklu dil desteği
 - [ ] Gelişmiş psikolojik analiz
 - [ ] Topluluk desteği forumu
+
+## 🔧 Sorun Giderme
+
+### ❌ Yaygın Hatalar ve Çözümleri
+
+#### 1. "OpenRouter API key bulunamadı" Hatası
+```bash
+# Çözüm: .env dosyasını kontrol edin
+cat .env
+# OPENROUTER_API_KEY=sk-or-v1-your_key_here şeklinde olmalı
+```
+
+#### 2. "ModuleNotFoundError: No module named 'openai'" Hatası
+```bash
+# Çözüm: Bağımlılıkları yeniden yükleyin
+pip install -r requirements.txt
+```
+
+#### 3. Frontend Bağlantı Hatası
+```bash
+# Backend'in çalıştığından emin olun
+python app.py
+# Yeni terminal açın
+cd frontend && npm start
+```
+
+#### 4. API Key Geçersiz Hatası
+- OpenRouter.com'da API key'inizin aktif olduğunu kontrol edin
+- Ücretsiz hesabınızda kredi kaldığını kontrol edin
+- API key formatının doğru olduğunu kontrol edin: `sk-or-v1-...`
+
+### 📞 Destek
+Sorun yaşarsanız:
+1. GitHub Issues bölümünde bildirin
+2. Hata mesajını tam olarak paylaşın
+3. İşletim sisteminizi belirtin
 
 ## 📄 Lisans
 
